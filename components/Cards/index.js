@@ -18,3 +18,68 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+.then(response => {
+  console.log(response.data.articles);
+  createArticles(response.data.articles);
+})
+.catch(error => {
+  console.log(error)
+},[])
+
+
+
+
+function createArticles(information){
+
+    let parentDiv = document.querySelector('.tabs');
+    
+
+    for (let i = 0; i < information.length; i++){
+        parentDiv.appendChild(newArticle(information[i])) ;
+    }
+
+
+    return parentDiv;
+
+
+
+}
+// <div class="card">
+//   <div class="headline">{Headline of article}</div>
+//   <div class="author">
+//     <div class="img-container">
+//       <img src={url of authors image} />
+//     </div>
+//     <span>By {author's name}</span>
+//   </div>
+// </div>
+
+function newArticle(position){
+
+    let sectionDiv = document.createElement('div');
+
+    for (let i = 0; i < position.length; i++){
+        
+        let articleCard = document.createElement('div');
+        let articleHeadline = document.createElement('div');
+        let author = document.createElement('div');
+        let imageHolder = document.createElement('div');
+        let image = document.createElement('img');
+        let name = document.createElement('span');
+
+        articleCard.classList.add('.card');
+        articleHeadline.classList.add('.headline');
+        author.classList.add('.author');
+        imageHolder.classList.add('.img-container');
+
+        articleHeadline.textContent = position.headline;
+        name.textContent = position.authorName;
+        image.src = position.authorPhoto;
+
+        sectionDiv.appendChild(articleCard);
+    }
+
+    return sectionDiv;
+
+}
