@@ -32,34 +32,29 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 
 function createArticles(information){
 
-    let parentDiv = document.querySelector('.tabs');
+    console.log(Object.keys(information));
     
+    let parentDiv = document.querySelector('.tabs');
+    debugger
 
     for (let i = 0; i < information.length; i++){
-        parentDiv.appendChild(newArticle(information[i])) ;
-    }
+        debugger
+        console.log(information[i]);
+        parentDiv.appendChild(newArticle(information[i]));
 
+    }
 
     return parentDiv;
 
-
-
 }
-// <div class="card">
-//   <div class="headline">{Headline of article}</div>
-//   <div class="author">
-//     <div class="img-container">
-//       <img src={url of authors image} />
-//     </div>
-//     <span>By {author's name}</span>
-//   </div>
-// </div>
+
 
 function newArticle(position){
 
     let sectionDiv = document.createElement('div');
 
-    for (let i = 0; i < position.length; i++){
+    for (let i = 0; i < 4; i++){
+        debugger;
         
         let articleCard = document.createElement('div');
         let articleHeadline = document.createElement('div');
